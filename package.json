@@ -16,7 +16,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "rollup -c --watch",
     "reload": "livereload 'dist/' -d",
-    "dev": "npm-run-all --parallel watch reload"
+    "dev": "npm-run-all --parallel watch reload",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",

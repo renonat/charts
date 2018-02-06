@@ -21,6 +21,7 @@ export default class AxisChart extends BaseChart {
 		this.zero_line = this.height;
 
 		this.percentage_values = args.percentage_values || 0;
+		this.x_axis_step = args.x_axis_step || 1;
 
 		// this.old_values = {};
 	}
@@ -156,7 +157,7 @@ export default class AxisChart extends BaseChart {
 			return;
 		}
 
-		let allowed_space = this.avg_unit_width * 1.5;
+		let allowed_space = this.avg_unit_width * 1.5 * this.x_axis_step;
 		let allowed_letters = allowed_space / 8;
 
 		this.x_axis_group.textContent = '';
@@ -175,6 +176,9 @@ export default class AxisChart extends BaseChart {
 				} else {
 					point = point.slice(0, allowed_letters-3) + " ...";
 				}
+			}
+			if (this.x_axis_step != 1 && i % this.x_axis_step != 0) {
+				point = ''
 			}
 			this.x_axis_group.appendChild(
 				makeXLine(

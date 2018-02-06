@@ -20,6 +20,8 @@ export default class AxisChart extends BaseChart {
 
 		this.zero_line = this.height;
 
+		this.percentage_values = args.percentage_values || 0;
+
 		// this.old_values = {};
 	}
 
@@ -208,7 +210,9 @@ export default class AxisChart extends BaseChart {
 					'y-value-text',
 					axis_line_class,
 					this.zero_line - value * this.multiplier,
-					(value === 0 && i !== 0) // Non-first Zero line
+					(value === 0 && i !== 0), // Non-first Zero line,
+					"",
+				  (this.percentage_values == 1)
 				)
 			);
 		});

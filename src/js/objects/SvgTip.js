@@ -66,7 +66,7 @@ export default class SvgTip {
 				styles: {
 					'border-top': `3px solid ${color}`
 				},
-				innerHTML: `<strong style="display: block;">${ set.value === 0 || set.value ? set.value : '' }</strong>
+				innerHTML: `<strong style="display: block;">${ set.value === 0 || set.value ? set.value : '' }%</strong>
 					${set.title ? set.title : '' }`
 			});
 

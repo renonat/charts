@@ -7,7 +7,7 @@ export default class PercentageChart extends BaseChart {
 		this.type = 'percentage';
 
 		this.max_slices = 10;
-		this.max_legend_points = 6;
+		this.max_legend_points = 10;
 
 		this.setup();
 	}
@@ -100,7 +100,7 @@ export default class PercentageChart extends BaseChart {
 				let y = p_off.top - g_off.top - 6;
 				let title = (this.formatted_labels && this.formatted_labels.length>0
 					? this.formatted_labels[i] : this.labels[i]) + ': ';
-				let percent = (this.slice_totals[i]*100/this.grand_total).toFixed(1);
+				let percent = (this.slice_totals[i]*100/this.grand_total).toFixed(0);
 
 				this.tip.set_values(x, y, title, percent + "%");
 				this.tip.show_tip();
@@ -120,7 +120,7 @@ export default class PercentageChart extends BaseChart {
 				stats.innerHTML = `<span class="indicator">
 					<i style="background: ${this.colors[i]}"></i>
 					<span class="text-muted">${x_values[i]}:</span>
-					${d}
+					${d}%
 				</span>`;
 			}
 		});

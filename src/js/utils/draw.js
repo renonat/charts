@@ -162,7 +162,7 @@ export function makeXLine(height, textStartAt, point, labelClass, axisLineClass,
 	return xLine;
 }
 
-export function makeYLine(startAt, width, textEndAt, point, labelClass, axisLineClass, yPos, darker=false, lineType="") {
+export function makeYLine(startAt, width, textEndAt, point, labelClass, axisLineClass, yPos, darker=false, lineType="", percentage=false) {
 	let line = createSVG('line', {
 		className: lineType === "dashed" ? "dashed": "",
 		x1: startAt,
@@ -176,7 +176,7 @@ export function makeYLine(startAt, width, textEndAt, point, labelClass, axisLine
 		x: textEndAt,
 		y: 0,
 		dy: '.32em',
-		innerHTML: point+""
+		innerHTML: point+(percentage ? "%" : "")
 	});
 
 	let yLine = createSVG('g', {

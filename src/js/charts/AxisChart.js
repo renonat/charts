@@ -1,4 +1,4 @@
-import { offset } from '../utils/dom';
+import { $, offset } from '../utils/dom';
 import { UnitRenderer, makeXLine, makeYLine } from '../utils/draw';
 import { Animator } from '../utils/animate';
 import { runSVGAnimation } from '../utils/animation';
@@ -22,6 +22,8 @@ export default class AxisChart extends BaseChart {
 
 		this.percentage_values = args.percentage_values || 0;
 		this.x_axis_step = args.x_axis_step || 1;
+
+		this.has_legend = args.has_legend || false;
 
 		// this.old_values = {};
 	}
@@ -107,6 +109,10 @@ export default class AxisChart extends BaseChart {
 		this.setup_marker_components();
 		this.setup_aggregation_components();
 		this.setup_graph_components();
+		
+		if (this.has_legend) {
+			this.show_legend();
+		}
 	}
 
 	setup_marker_components() {
@@ -839,5 +845,26 @@ export default class AxisChart extends BaseChart {
 		});
 		// this.chart_wrapper.removeChild(this.tip.container);
 		// this.make_tooltip();
+	}
+
+	show_legend() {
+		this.stats_wrapper.className += ' ' + 'graph-focus-margin';
+		this.stats_wrapper.style.marginBottom = '30px';
+		this.stats_wrapper.style.paddingTop = '0px';
+
+		// TODO: Wrong x values. Want line titles
+		let y_values = this.y;
+		y_values.map((d, i) => {
+			if(d) {
+				let stats = $.create('div', {
+					className: 'stats',
+					inside: this.stats_wrapper
+				});
+				stats.innerHTML = `<span class="indicator">
+					<i style="background: ${this.colors[i]}"></i>
+					<span class="text-muted">${d.title}</span>
+				</span>`;
+			}
+		});
 	}
 }
